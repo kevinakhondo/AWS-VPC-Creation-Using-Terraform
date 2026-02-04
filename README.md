@@ -96,7 +96,21 @@ resource "aws_subnet" "public_subnet" {
 }
 
 ```
+#### Step 5.2 Create Private Subnet
 
+Use the following
+```
+resource "aws_subnet" "private_subnet" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = "us-east-1a"
+
+  tags = {
+    Name = "aws-data-engineering-private-subnet"
+  }
+}
+
+```
 
 
 
