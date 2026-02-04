@@ -126,5 +126,34 @@ resource "aws_internet_gateway" "igw" {
 }
 
 ```
+### Step 7: Create Public Route Table
+We create a public route table and associate it with a public subnet created above.
 
+Creating a public route table:
+
+```
+resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "aws-data-engineering-public-route-table"
+  }
+}
+
+```
+
+Then, Associate it with a public subnet
+
+```
+resource "aws_route_table_association" "public_assoc" {
+  subnet_id      = aws_subnet.aws-data-engineering-public-subnet.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+```
 
