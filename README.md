@@ -112,5 +112,19 @@ resource "aws_subnet" "private_subnet" {
 
 ```
 
+### Step 6: Create an Internet Gateway (IGW)
+
+This is going to be for public access.
+
+```
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "aws-data-engineering-igw"
+  }
+}
+
+```
 
 
