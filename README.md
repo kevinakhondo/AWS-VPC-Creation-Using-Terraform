@@ -78,7 +78,24 @@ resource "aws_vpc" "main" {
 }
 
 ```
+### Step 5: Create VPC Subnets
+Under this, we create a public subnet to be used by EC2 and a private subnet to be used by RDS.
+#### Step 5.1 Create Public Subnet
+Use the following
 
+```
+resource "aws_subnet" "public_subnet" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = "10.0.1.0/24"
+  map_public_ip_on_launch = true
+  availability_zone       = "us-east-1a"
+
+  tags = {
+    Name = "aws-data-engineering-public-subnet"
+  }
+}
+
+```
 
 
 
