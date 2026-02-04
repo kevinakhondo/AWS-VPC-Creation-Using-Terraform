@@ -157,3 +157,31 @@ resource "aws_route_table_association" "public_assoc" {
 
 ```
 
+### Step 8: Add the Outputs.tf
+These two will play a critical role in EC2 and RDS module
+
+```
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+
+output "public_subnet_id" {
+  value = aws_subnet.public_subnet.id
+}
+
+output "private_subnet_id" {
+  value = aws_subnet.private_subnet.id
+}
+
+```
+### Step 9: Apply the VPC Module
+
+```
+terraform init
+terraform plan
+terraform apply
+
+```
+
+
+
